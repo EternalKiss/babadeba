@@ -54,6 +54,8 @@ namespace Курсовая
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.ColumnHeadersVisible = true;
+
+            ChangeCOLOR();
         }
 
         public bool InsertPersonal(string Ifio, int Iage, string IPosition, int Izarabatok)
@@ -138,6 +140,7 @@ namespace Курсовая
         {
             table.Clear();
             GetlistPersonal();
+            ChangeCOLOR();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -173,6 +176,34 @@ namespace Курсовая
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             reload_list();
+        }
+        private void ChangeCOLOR()
+        {
+            int count_rows = dataGridView1.RowCount - 1;
+            for (int i = 0; i < count_rows; i++)
+            {
+                string status = Convert.ToString(dataGridView1.Rows[i].Cells[3].Value);
+                if (status == "Врач")
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Green;
+                }
+                if (status == "Главврач")
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                if (status == "Уборщик")
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.HotPink;
+                }
+                if (status == "В отпуске")
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+                if (status == "Медбрат")
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Blue;
+                }
+            }
         }
     }
 }
